@@ -8,10 +8,14 @@ const connection = createConnection({
 }).promise();
 
 (async() => {
-    const sql = "INSERT INTO table_name (id, data) VALUES (?, ?)";
-    const int = [4, 123];
+    const sql = "INSERT INTO table_name (id, data) VALUES ?";
+    const val = [
+        [4, 123],
+        [5, 321],
+        [6, 123]
+    ];
     
-    const query = await connection.query(sql, int);
+    const query = await connection.query(sql, val);
     const data = await connection.query('SELECT * FROM table_name');
     
     console.log(query[0]);
